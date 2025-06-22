@@ -29,6 +29,5 @@ This project is built with:
 
 
 ## Deploy
-```
+
 https://earthquake-pwa.vercel.app/
-```
