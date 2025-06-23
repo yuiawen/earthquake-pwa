@@ -28,6 +28,6 @@ This project is built with:
 - Tailwind CSS
 
 
-## Deploy
+## Live Demo
 
 https://earthquake-pwa.vercel.app/
