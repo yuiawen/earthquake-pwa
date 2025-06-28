@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Activity, Cloud, Map, MapPin, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from './ThemeToggle';
+import PWAInstallButton from './PWAInstallButton';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -23,55 +24,55 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 transition-colors duration-300">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-slate-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       {/* Header */}
-      <header className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-gray-100 dark:border-slate-700 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+      <header className="bg-white/90 dark:bg-slate-900/95 backdrop-blur-xl border-b border-blue-100 dark:border-slate-700 sticky top-0 z-50 shadow-sm dark:shadow-slate-800/50">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-3">
-              <div className="bg-gradient-to-r from-blue-600 to-cyan-600 p-2 rounded-xl">
-                <Activity className="w-6 h-6 text-white" />
+            <Link to="/" className="flex items-center space-x-4 group">
+              <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-3 rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300">
+                <Activity className="w-7 h-7 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-400 dark:to-blue-500 bg-clip-text text-transparent">
                   InfoGempa
                 </h1>
-                <p className="text-xs text-gray-500 dark:text-gray-400">BMKG Indonesia</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">BMKG Indonesia</p>
               </div>
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex space-x-1">
+            <nav className="hidden md:flex space-x-2">
               {navigation.map((item) => {
                 const Icon = item.icon;
                 return (
                   <Link
                     key={item.name}
                     to={item.href}
-                    className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 ${
+                    className={`flex items-center space-x-3 px-6 py-3 rounded-2xl transition-all duration-300 ${
                       isActive(item.href)
-                        ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
-                        : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800 hover:text-gray-900 dark:hover:text-gray-100'
+                        ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg shadow-blue-500/25'
+                        : 'text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400'
                     }`}
                   >
-                    <Icon className="w-4 h-4" />
-                    <span className="font-medium">{item.name}</span>
+                    <Icon className="w-5 h-5" />
+                    <span className="font-semibold">{item.name}</span>
                   </Link>
                 );
               })}
             </nav>
 
             {/* Theme Toggle and Mobile menu button */}
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-3">
               <ThemeToggle />
               <Button
                 variant="ghost"
                 size="icon"
-                className="md:hidden"
+                className="md:hidden rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-800"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
-                {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </Button>
             </div>
           </div>
@@ -79,8 +80,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-gray-100 dark:border-slate-700">
-            <div className="px-4 py-2 space-y-1">
+          <div className="md:hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-t border-blue-100 dark:border-slate-700">
+            <div className="px-6 py-4 space-y-2">
               {navigation.map((item) => {
                 const Icon = item.icon;
                 return (
@@ -88,14 +89,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                     key={item.name}
                     to={item.href}
                     onClick={() => setIsMenuOpen(false)}
-                    className={`flex items-center space-x-3 px-3 py-3 rounded-lg transition-all duration-200 ${
+                    className={`flex items-center space-x-4 px-4 py-4 rounded-2xl transition-all duration-300 ${
                       isActive(item.href)
-                        ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
-                        : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800 hover:text-gray-900 dark:hover:text-gray-100'
+                        ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg'
+                        : 'text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-800'
                     }`}
                   >
-                    <Icon className="w-5 h-5" />
-                    <span className="font-medium">{item.name}</span>
+                    <Icon className="w-6 h-6" />
+                    <span className="font-semibold text-lg">{item.name}</span>
                   </Link>
                 );
               })}
@@ -109,16 +110,32 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         {children}
       </main>
 
-      {/* Footer */}
-      <footer className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-t border-gray-100 dark:border-slate-700 mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="text-center">
-            <p className="text-gray-600 dark:text-gray-300 text-sm">
-              Data gempa bumi dari BMKG (Badan Meteorologi, Klimatologi, dan Geofisika)
-            </p>
-            <p className="text-gray-500 dark:text-gray-400 text-xs mt-2">
-              Aplikasi ini dapat digunakan offline setelah data pertama kali dimuat
-            </p>
+      {/* PWA Install Button */}
+      <div className="fixed bottom-6 right-6 z-40">
+        <PWAInstallButton />
+      </div>
+
+      {/* Compact Footer */}
+      <footer className="bg-white/90 dark:bg-slate-900/95 backdrop-blur-xl border-t border-blue-100 dark:border-slate-700 mt-12">
+        <div className="max-w-4xl mx-auto px-6 py-6">
+          <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+            <div className="flex items-center space-x-3">
+              <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-2 rounded-xl">
+                <Activity className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <h3 className="font-bold text-slate-800 dark:text-white">InfoGempa</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400">Data BMKG Indonesia</p>
+              </div>
+            </div>
+            <div className="text-center sm:text-right">
+              <p className="text-sm text-slate-600 dark:text-slate-400">
+                Mendukung mode offline & PWA
+              </p>
+              <p className="text-xs text-slate-500 dark:text-slate-500">
+                © 2025 InfoGempa
+              </p>
+            </div>
           </div>
         </div>
       </footer>
