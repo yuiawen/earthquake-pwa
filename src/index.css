@@ -97,7 +97,7 @@
   }
 }
 
-/* Improved dark mode contrast */
+/* Improved dark mode contrast - proper dark backgrounds */
 .dark {
   --tw-bg-opacity: 1;
   background-color: rgb(15 23 42 / var(--tw-bg-opacity));
@@ -113,6 +113,11 @@
   background-color: rgb(30 41 59 / var(--tw-bg-opacity));
 }
 
+.dark .bg-slate-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(51 65 85 / var(--tw-bg-opacity));
+}
+
 .dark .text-slate-400 {
   --tw-text-opacity: 1;
   color: rgb(148 163 184 / var(--tw-text-opacity));
@@ -121,4 +126,105 @@
 .dark .text-slate-300 {
   --tw-text-opacity: 1;
   color: rgb(203 213 225 / var(--tw-text-opacity));
+}
+
+.dark .text-slate-200 {
+  --tw-text-opacity: 1;
+  color: rgb(226 232 240 / var(--tw-text-opacity));
+}
+
+/* Dark mode specific background improvements - replace bright whites */
+.dark .bg-white\/90 {
+  background-color: rgb(30 41 59 / 0.95) !important;
+}
+
+.dark .bg-white\/95 {
+  background-color: rgb(30 41 59 / 0.98) !important;
+}
+
+.dark .bg-white\/80 {
+  background-color: rgb(30 41 59 / 0.90) !important;
+}
+
+.dark .bg-white\/15 {
+  background-color: rgb(51 65 85 / 0.4) !important;
+}
+
+.dark .bg-white\/20 {
+  background-color: rgb(51 65 85 / 0.5) !important;
+}
+
+/* Fix bright white backgrounds in dark mode */
+.dark .bg-white {
+  background-color: rgb(30 41 59) !important;
+}
+
+.dark .bg-gray-50 {
+  background-color: rgb(51 65 85) !important;
+}
+
+.dark .bg-gray-100 {
+  background-color: rgb(71 85 105) !important;
+}
+
+.dark .bg-blue-50 {
+  background-color: rgb(30 41 59) !important;
+}
+
+.dark .bg-blue-100 {
+  background-color: rgb(51 65 85) !important;
+}
+
+.dark .bg-orange-50 {
+  background-color: rgb(67 56 47) !important;
+}
+
+.dark .bg-orange-100 {
+  background-color: rgb(92 77 63) !important;
+}
+
+/* Text colors for dark mode */
+.dark .text-gray-600 {
+  color: rgb(148 163 184) !important;
+}
+
+.dark .text-gray-500 {
+  color: rgb(156 163 175) !important;
+}
+
+.dark .text-orange-600 {
+  color: rgb(234 179 8) !important;
+}
+
+.dark .text-orange-700 {
+  color: rgb(217 119 6) !important;
+}
+
+.dark .text-blue-600 {
+  color: rgb(59 130 246) !important;
+}
+
+.dark .text-blue-100 {
+  color: rgb(219 234 254) !important;
+}
+
+/* Border colors for dark mode */
+.dark .border-gray-200 {
+  border-color: rgb(71 85 105) !important;
+}
+
+.dark .border-gray-300 {
+  border-color: rgb(100 116 139) !important;
+}
+
+.dark .border-blue-200 {
+  border-color: rgb(59 130 246 / 0.3) !important;
+}
+
+.dark .border-blue-300 {
+  border-color: rgb(59 130 246 / 0.5) !important;
+}
+
+.dark .border-orange-200 {
+  border-color: rgb(234 179 8 / 0.3) !important;
 }

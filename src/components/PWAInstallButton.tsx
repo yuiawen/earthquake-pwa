@@ -1,57 +1,95 @@
 
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Download, Smartphone, X } from 'lucide-react';
+import { Download, Smartphone, X, CheckCircle } from 'lucide-react';
+
+interface BeforeInstallPromptEvent extends Event {
+  prompt(): Promise<void>;
+  userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
+}
 
 const PWAInstallButton: React.FC = () => {
-  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
-  const [showInstallButton, setShowInstallButton] = useState(true);
+  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [isVisible, setIsVisible] = useState(true);
+  const [isInstalled, setIsInstalled] = useState(false);
+  const [installStatus, setInstallStatus] = useState<string>('Menunggu event...');
 
   useEffect(() => {
-    // Listen for PWA install prompt
-    const handleBeforeInstallPrompt = (e: Event) => {
-      e.preventDefault();
-      setDeferredPrompt(e);
-      setShowInstallButton(true);
+    // Check if app is already installed
+    const checkInstallStatus = () => {
+      if (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) {
+        setIsInstalled(true);
+        setInstallStatus('Sudah terinstal');
+        setIsVisible(false); // Hide button if already installed
+        console.log('App is already installed');
+        return;
+      }
+      setInstallStatus('Belum terinstal');
     };
 
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    // Listen for PWA install prompt
+    const handleBeforeInstallPrompt = (e: Event) => {
+      console.log('BeforeInstallPromptEvent fired');
+      e.preventDefault();
+      setDeferredPrompt(e as BeforeInstallPromptEvent);
+      setInstallStatus('Siap diinstal!');
+    };
 
-    // Hide install button if already installed
-    window.addEventListener('appinstalled', () => {
-      setShowInstallButton(false);
+    // Handle app installed event
+    const handleAppInstalled = () => {
+      console.log('PWA was installed');
+      setIsInstalled(true);
+      setInstallStatus('Berhasil diinstal!');
       setDeferredPrompt(null);
-    });
+      // Hide button after successful installation
+      setTimeout(() => {
+        setIsVisible(false);
+      }, 2000);
+    };
 
-    // Check if app is already installed
-    if (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) {
-      setShowInstallButton(false);
-    }
+    checkInstallStatus();
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    window.addEventListener('appinstalled', handleAppInstalled);
 
     return () => {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+      window.removeEventListener('appinstalled', handleAppInstalled);
     };
   }, []);
 
   const handleInstallClick = async () => {
-    if (!deferredPrompt) return;
-
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    
-    if (outcome === 'accepted') {
-      setShowInstallButton(false);
+    if (!deferredPrompt) {
+      console.log('No deferred prompt available - showing info');
+      setInstallStatus('Event belum tersedia. Coba refresh halaman.');
+      return;
     }
-    
-    setDeferredPrompt(null);
+
+    try {
+      await deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      
+      console.log(`User response to the install prompt: ${outcome}`);
+      
+      if (outcome === 'accepted') {
+        setInstallStatus('Sedang menginstal...');
+        setIsInstalled(true);
+      } else {
+        setInstallStatus('Instalasi dibatalkan');
+      }
+      
+      setDeferredPrompt(null);
+    } catch (error) {
+      console.error('Error during installation:', error);
+      setInstallStatus('Error saat instalasi');
+    }
   };
 
   const handleDismiss = () => {
     setIsVisible(false);
   };
 
-  if (!isVisible) return null;
+  // Hide button if not visible or already installed
+  if (!isVisible || isInstalled) return null;
 
   return (
     <div className="relative">
@@ -67,7 +105,7 @@ const PWAInstallButton: React.FC = () => {
           </div>
           <div className="text-left">
             <p className="font-bold text-sm">INSTAL PWA</p>
-            <p className="text-xs opacity-80">Akses offline</p>
+            <p className="text-xs opacity-80">{installStatus}</p>
           </div>
           <Download className="w-4 h-4 animate-bounce" />
         </div>

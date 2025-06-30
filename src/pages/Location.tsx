@@ -127,11 +127,11 @@ const Location: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto p-4 space-y-6">
       {/* Header */}
-      <div className="bg-white/80 backdrop-blur-md rounded-2xl p-6 shadow-lg">
+      <div className="bg-card/80 backdrop-blur-md rounded-2xl p-6 shadow-lg border border-border/50">
         <h1 className="text-2xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
           Pengaturan Lokasi
         </h1>
-        <p className="text-gray-600">Atur lokasi untuk mendapatkan informasi gempa dan cuaca yang lebih akurat</p>
+        <p className="text-muted-foreground">Atur lokasi untuk mendapatkan informasi gempa dan cuaca yang lebih akurat</p>
       </div>
 
       {/* Current Location */}
@@ -166,7 +166,7 @@ const Location: React.FC = () => {
       )}
 
       {/* GPS Location */}
-      <Card className="bg-white/80 backdrop-blur-md shadow-lg">
+      <Card className="bg-card/80 backdrop-blur-md shadow-lg border-border/50">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Navigation className="w-5 h-5 text-blue-500" />
@@ -174,7 +174,7 @@ const Location: React.FC = () => {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-gray-600 mb-4">
+          <p className="text-muted-foreground mb-4">
             Gunakan GPS untuk mendeteksi lokasi Anda secara otomatis
           </p>
           <Button
@@ -189,7 +189,7 @@ const Location: React.FC = () => {
       </Card>
 
       {/* Search Cities */}
-      <Card className="bg-white/80 backdrop-blur-md shadow-lg">
+      <Card className="bg-card/80 backdrop-blur-md shadow-lg border-border/50">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Search className="w-5 h-5 text-green-500" />
@@ -210,13 +210,13 @@ const Location: React.FC = () => {
                 key={index}
                 className={`p-3 rounded-lg border-2 cursor-pointer transition-all duration-200 ${
                   currentLocation?.city === city.city
-                    ? 'bg-blue-100 border-blue-300'
-                    : 'bg-gray-50 border-gray-200 hover:bg-gray-100'
+                    ? 'bg-blue-500/20 border-blue-500/50 dark:bg-blue-900/30 dark:border-blue-400/50'
+                    : 'bg-muted/50 border-border hover:bg-muted/80'
                 }`}
                 onClick={() => selectCity(city)}
               >
                 <p className="font-medium">{city.city}</p>
-                <p className="text-sm text-gray-600">{city.province}</p>
+                <p className="text-sm text-muted-foreground">{city.province}</p>
                 {currentLocation?.city === city.city && (
                   <Badge variant="outline" className="mt-1 text-xs">Aktif</Badge>
                 )}
@@ -228,7 +228,7 @@ const Location: React.FC = () => {
 
       {/* Saved Locations */}
       {savedLocations.length > 0 && (
-        <Card className="bg-white/80 backdrop-blur-md shadow-lg">
+        <Card className="bg-card/80 backdrop-blur-md shadow-lg border-border/50">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Settings className="w-5 h-5 text-purple-500" />
@@ -238,10 +238,10 @@ const Location: React.FC = () => {
           <CardContent>
             <div className="space-y-3">
               {savedLocations.map((location, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <div key={index} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg border border-border">
                   <div>
                     <p className="font-medium">{location.city}</p>
-                    <p className="text-sm text-gray-600">{location.province}</p>
+                    <p className="text-sm text-muted-foreground">{location.province}</p>
                   </div>
                   <div className="flex gap-2">
                     <Button

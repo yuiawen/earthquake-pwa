@@ -71,8 +71,8 @@ const GempaDetail: React.FC<GempaDetailProps> = ({ gempa, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b p-4 flex items-center justify-between">
+      <div className="bg-background border border-border rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-background border-b border-border p-4 flex items-center justify-between">
           <h2 className="text-xl font-bold">Detail Gempa Bumi</h2>
           <Button variant="ghost" size="sm" onClick={onClose}>
             <X className="w-5 h-5" />
@@ -82,13 +82,13 @@ const GempaDetail: React.FC<GempaDetailProps> = ({ gempa, onClose }) => {
         <div className="p-6 space-y-6">
           {/* Alert for strong earthquakes */}
           {parseFloat(gempa.Magnitude) >= 5 && (
-            <Card className="border-orange-200 bg-orange-50">
+            <Card className="border-orange-500/30 bg-orange-950/20 dark:bg-orange-900/20">
               <CardContent className="p-4">
-                <div className="flex items-center gap-2 text-orange-700">
+                <div className="flex items-center gap-2 text-orange-600 dark:text-orange-400">
                   <AlertTriangle className="w-5 h-5" />
                   <span className="font-semibold">Peringatan Gempa Kuat</span>
                 </div>
-                <p className="text-sm text-orange-600 mt-1">
+                <p className="text-sm text-orange-700 dark:text-orange-300 mt-1">
                   Gempa dengan magnitudo {gempa.Magnitude} berpotensi menyebabkan kerusakan. 
                   Tetap waspada dan siaga.
                 </p>
@@ -97,7 +97,7 @@ const GempaDetail: React.FC<GempaDetailProps> = ({ gempa, onClose }) => {
           )}
 
           {/* Basic Info */}
-          <Card>
+          <Card className="bg-card/50 backdrop-blur-sm border-border/50">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Clock className="w-5 h-5" />
@@ -115,7 +115,7 @@ const GempaDetail: React.FC<GempaDetailProps> = ({ gempa, onClose }) => {
           </Card>
 
           {/* Location Info */}
-          <Card>
+          <Card className="bg-card/50 backdrop-blur-sm border-border/50">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <MapPin className="w-5 h-5" />
@@ -139,7 +139,7 @@ const GempaDetail: React.FC<GempaDetailProps> = ({ gempa, onClose }) => {
           </Card>
 
           {/* Technical Info */}
-          <Card>
+          <Card className="bg-card/50 backdrop-blur-sm border-border/50">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Gauge className="w-5 h-5" />
@@ -164,7 +164,7 @@ const GempaDetail: React.FC<GempaDetailProps> = ({ gempa, onClose }) => {
                 <span className="font-semibold">Potensi:</span>
                 <span>{gempa.Potensi || 'Tidak ada informasi'}</span>
               </div>
-              <div className="text-xs text-gray-600 mt-2">
+              <div className="text-xs text-muted-foreground mt-2">
                 {magnitudeInfo.description}
               </div>
             </CardContent>
@@ -179,7 +179,7 @@ const GempaDetail: React.FC<GempaDetailProps> = ({ gempa, onClose }) => {
           />
 
           {/* Footer Info */}
-          <div className="text-xs text-gray-500 text-center">
+          <div className="text-xs text-muted-foreground text-center">
             Data dari BMKG (Badan Meteorologi, Klimatologi, dan Geofisika)
           </div>
         </div>

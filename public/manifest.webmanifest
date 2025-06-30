@@ -1,0 +1,51 @@
+
+{
+  "name": "InfoGempa - Informasi Gempa Bumi BMKG",
+  "short_name": "InfoGempa",
+  "id": "infogempa-bmkg-2025",
+  "description": "Aplikasi informasi gempa bumi terbaru dari BMKG Indonesia dengan dukungan offline",
+  "start_url": "/",
+  "display": "standalone",
+  "scope": "/",
+  "orientation": "portrait-primary",
+  "theme_color": "#0ea5e9",
+  "background_color": "#0f172a",
+  "lang": "id",
+  "categories": ["news", "weather", "utilities", "education"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='24' fill='%230ea5e9'/%3E%3Cpath d='m96 48 28 48-28 24-28-24Z' fill='white'/%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='512' height='512' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='64' fill='%230ea5e9'/%3E%3Cpath d='m256 128 75 128-75 64-75-64Z' fill='white'/%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='720' height='1280' viewBox='0 0 720 1280'%3E%3Crect width='720' height='1280' fill='%230ea5e9'/%3E%3Ctext x='360' y='640' text-anchor='middle' fill='white' font-size='48'%3EInfoGempa%3C/text%3E%3C/svg%3E",
+      "sizes": "720x1280",
+      "type": "image/svg+xml",
+      "form_factor": "narrow",
+      "label": "InfoGempa - Dashboard Utama"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Gempa Terbaru",
+      "short_name": "Terbaru",
+      "description": "Lihat gempa terbaru",
+      "url": "/",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' rx='12' fill='%230ea5e9'/%3E%3Cpath d='m48 24 14 24-14 12-14-12Z' fill='white'/%3E%3C/svg%3E",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false
+}
