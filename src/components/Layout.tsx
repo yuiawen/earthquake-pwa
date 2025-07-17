@@ -4,7 +4,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { Activity, Cloud, Map, MapPin, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from './ThemeToggle';
-import PWAInstallButton from './PWAInstallButton';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -110,10 +109,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         {children}
       </main>
 
-      {/* PWA Install Button */}
-      <div className="fixed bottom-6 right-6 z-40">
-        <PWAInstallButton />
-      </div>
 
       {/* Compact Footer */}
       <footer className="bg-white/90 dark:bg-slate-800/95 backdrop-blur-xl border-t border-blue-100 dark:border-slate-600 mt-12">

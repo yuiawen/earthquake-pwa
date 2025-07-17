@@ -2,7 +2,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { RefreshCw, Wifi, WifiOff, TrendingUp, Clock, MapPin, Sparkles } from 'lucide-react';
-import PWAInstallButton from './PWAInstallButton';
 
 interface HeroSectionProps {
   isOffline: boolean;

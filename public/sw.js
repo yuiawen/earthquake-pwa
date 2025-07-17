@@ -1,5 +1,3 @@
-
-// Enhanced Service Worker for InfoGempa PWA
 const CACHE_NAME = 'infogempa-v2';
 const urlsToCache = [
   '/',
